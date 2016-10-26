@@ -1,2 +1,1 @@
-# example-gallery
-Example of gallery built on Symfony
+Simple gallery using Symfony. Just for fun.
