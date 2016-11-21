@@ -18,9 +18,17 @@ class DefaultController extends Controller
         $gallery = $this->get('app.gallery');
         $albums = $gallery->getAlbums();
 
-        return $this->render('default/index.html.twig', array(
+        return $this->render('index.html.twig', array(
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
             ''
         ));
+    }
+
+    /**
+     * @Route("/{controller}/{action}", name="others")
+     */
+    public function othersAction(Request $request)
+    {
+        return $this->indexAction($request);
     }
 }

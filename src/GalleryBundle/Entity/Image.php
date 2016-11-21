@@ -9,10 +9,12 @@ use \Doctrine\ORM\Mapping\Column;
 use \Doctrine\ORM\Mapping\OneToMany;
 use \Doctrine\ORM\Mapping\Id;
 use \Doctrine\ORM\Mapping\GeneratedValue;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @Entity
- * @Table(name="album")
+ * @Table(name="image")
  *
  */
 class Image
@@ -21,11 +23,12 @@ class Image
      * @Id
      * @Column(type="integer", name="id")
      * @GeneratedValue
+     * @Groups({"default"})
      */
     private $id;
 
     /**
-     * @ManyToOne(targetEntity="Album")
+     * @ManyToOne(targetEntity="Album", inversedBy="album")
      * @JoinColumn(name="album_id", referencedColumnName="id")
      */
     private $album;
@@ -60,5 +63,10 @@ class Image
     public function setAlbum( $album )
     {
         $this->album = $album;
+    }
+
+    public function getImageUrl()
+    {
+        return '/img/image/'.sprintf('%04d', $this->getId()).'.jpg';
     }
 }

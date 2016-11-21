@@ -12,3 +12,10 @@ services:
     app.gallery:
         class:        GalleryBundle\Service\GalleryService
         arguments:    ['@doctrine.orm.entity_manager']
+
+    app.serializer_factory:
+        class: GalleryBundle\Service\Factory\SerializerFactory
+
+    app.serializer:
+        class:        Symfony\Component\Serializer\Serializer
+        factory: ['@app.serializer_factory', createDefault]

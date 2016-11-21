@@ -22,16 +22,29 @@ class GalleryService
         $this->albumRepository = $em->getRepository(Album::class);
     }
 
+    /**
+     * @return array
+     */
     public function getAlbums()
     {
         return $this->albumRepository->findAll();
     }
 
+    /**
+     * @param int $limit
+     *
+     * @return array
+     */
     public function getAlbumsWithLimitedImages($limit = self::DEFAULT_IMAGE_LIMIT)
     {
-        //todo
+        return $this->albumRepository->getAlbumsWithLimitedImages($limit);
     }
 
+    /**
+     * @param $id
+     *
+     * @return null|object
+     */
     public function getAlbum($id)
     {
         return $this->albumRepository->find($id);
